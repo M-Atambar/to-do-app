@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - ToDo APP</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</head>
+<body class="container">
+    <h1>To Do App</h1>
+
+    <input type="text" name="" id="task"> <button class="btn btn-primary" onclick="addtolist()">ADD</button>
+
+    <hr>
+    <ul class="list-group" id="list-group">
+      
+      </ul>
+</body>
+
+<script>
+
+    todolist =[]
+
+
+    function arrayTolist(){
+
+        output = ""
+        for(let i=0; i< todolist.length; i++){
+           // console.log(todolist[i])
+            
+            
+            output = output + `<li class="list-group-item">
+                <span style="cursor: pointer" onclick="doneTask(this)">${todolist[i]}</span> 
+                <button onclick="removeTask('${todolist[i]}')">X</button>
+                </li>`
+            
+        }
+        document.getElementById("list-group").innerHTML = output
+    }
+
+    function doneTask(spanelement){
+        var task = spanelement.innerHTML
+       // alert(task)
+        spanelement.innerHTML =task.strike()
+    }
+
+    function removeTask(task){
+       // alert(task)
+
+        const index = todolist.indexOf(task); // this will fetch the index number of task in array
+        if(index > -1){    //this will check whether task is available in array or not if avaliable then index will
+            todolist.splice(index, 1) //this will remove 1 element from the index number
+        }
+        arrayTolist()
+    }
+
+    arrayTolist()
+    function addtolist(){
+        task =document.getElementById("task").value
+       // alert(task)
+
+       todolist.push(task)
+
+       arrayTolist()
+    }
+
+
+    /* CW: WA Dunction whoch will read value of text box and alter
+    function should be called on click of add button
+    
+    CW@: Create an array todolist and loop through eash element
+    i.e. print all element from todolist array using for loop 
+    todolist = ["pay electricity BILL", "recharge mobile"]
+    
+    CW3: Create variable output and assign all the element of array to id list-group
+    */ 
+</script>
+
+
+</html>
